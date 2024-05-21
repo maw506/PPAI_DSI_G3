@@ -54,4 +54,15 @@ public class Bodega {
     public void setPeriodoActualizacion(String periodoActualizacion) {
         this.periodoActualizacion = periodoActualizacion;
     }
+
+    @Override
+    public String toString() {
+        return "Bodega: {" +
+                "coordenadasUbicacion='" + coordenadasUbicacion + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", historia='" + historia + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", periodoActualizacion='" + periodoActualizacion + '\'' +
+                '}';
+    }
 }
