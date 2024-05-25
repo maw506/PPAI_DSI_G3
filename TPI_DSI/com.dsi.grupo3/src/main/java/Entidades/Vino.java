@@ -19,6 +19,23 @@ public class Vino {
     private Maridaje maridaje;
 
 
+    public void calcularRanking(){}
+
+    public void compararEtiqueta(){}
+
+    public Boolean esDeBodega(Bodega bodega){
+        if(true){       //falta la logica del metodo
+            return true;
+        }
+        return false;
+    }
+
+    public void esDeRegionVitivinicola(){}
+
+
+
+
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Vino{");

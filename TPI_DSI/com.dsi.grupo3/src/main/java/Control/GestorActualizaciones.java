@@ -3,7 +3,9 @@ package Control;
 import Entidades.*;
 import lombok.Data;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static java.lang.System.in;
 
@@ -25,12 +27,31 @@ public class GestorActualizaciones {
     private Maridaje maridaje;
 
 
-    public void buscarBodegasConActualizaciones(){
+    public void opcionImportarActDeVinoDeBodega(){
+        buscarBodegasConActualizaciones(null, null);
+    }
+    //ver logica del metodo
 
+    public ArrayList<Bodega> buscarBodegasConActualizaciones(ArrayList<Bodega> bodegas, Date fechaActual){
+        ArrayList<Bodega> buscadas = new ArrayList<>();
+        for(Bodega b: bodegas){
+            if(b.hayActualizaciones(fechaActual)){
+                b.getNombre();
+                buscadas.add(b);
+            }
+        }
+        return buscadas;
     }
 
-    public void buscarActualizaciones(){
+    public void tomarSeleccionBodega(Bodega bodega){
+        this.setBodega(bodegaSeleccionada);
+    }
 
+    public ArrayList<Bodega> buscarActualizaciones(){
+        ArrayList<Bodega> bodegasConActualizaciones = buscarActualizaciones();
+
+
+        return bodegasConActualizaciones;
     }
 
 

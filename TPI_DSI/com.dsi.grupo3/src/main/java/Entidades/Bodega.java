@@ -3,7 +3,8 @@ package Entidades;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @AllArgsConstructor
 @Data
@@ -13,7 +14,27 @@ public class Bodega {
     private String descripcion;
     private String historia;
     private String nombre;
-    private int periodoActualizacion;
+    private Date periodoActualizacion;
+
+
+    public boolean hayActualizaciones(Date fechaActual){
+        if(this.periodoActualizacion == fechaActual){
+            return true;
+        }
+        return false;
+    }
+    public Date validarFechaUltimaActualizacion(){
+
+
+        return null;
+    }
+
+    public void tenesEsteVino(Vino vino){
+
+    }
+
+
+
 
 
 }

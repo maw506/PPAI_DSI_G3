@@ -34,11 +34,19 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Plugin para compilar el código -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -48,18 +56,24 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
-            <!-- Plugin para ejecutar la aplicación JavaFX -->
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>Boundary.PantallaAdminActualizaciones</mainClass>
+                    <executable>java</executable>
+                    <options>
+                        <option>--module-path</option>
+                        <option>${java.home}/lib</option>
+                        <option>--add-modules</option>
+                        <option>javafx.controls,javafx.fxml</option>
+                    </options>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
+                        <id>default-cli</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -68,5 +82,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

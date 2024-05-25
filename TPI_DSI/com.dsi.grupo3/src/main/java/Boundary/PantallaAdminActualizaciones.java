@@ -20,7 +20,7 @@ public class PantallaAdminActualizaciones extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // Crear instancias de las clases necesarias
-                Bodega bodega = new Bodega(123, "Descripción", "Historia", "Nombre", 2);
+                Bodega bodega = new Bodega(123, "Descripción", "Historia", "Nombre", null);
                 TipoUva tipoDeUva = new TipoUva("Descripción TipoDeUva", "Nombre TipoDeUva");
                 Varietal varietal = new Varietal("Descripción Varietal", 75.5, tipoDeUva);
                 Vino vino = new Vino(2021, "imagen_etiqueta.jpg", "Nombre del Vino", "Nota de cata de la bodega", 1500.0, varietal, null);

@@ -1,5 +1,8 @@
+import Boundary.InterfazSistemaDeBodegas;
 import Control.GestorActualizaciones;
 import Entidades.*;
+
+import java.util.ArrayList;
 
 public class App {
 
@@ -23,5 +26,14 @@ public class App {
 
         System.out.println("\n\nEn esta parte el control crea un nuevo vino");
         System.out.println(nuevo.toString());
+
+        System.out.println("\n En esta parte pruebo el metodo de la interfaz bodegas");
+        InterfazSistemaDeBodegas interfazSistemaDeBodegas = new InterfazSistemaDeBodegas();
+
+        ArrayList<Bodega> bodegasActualizadas = interfazSistemaDeBodegas.buscarActualizaciones();
+        for(Bodega b: bodegasActualizadas){
+            System.out.println(b.getNombre().toString());
+        }
+
     }
 }
