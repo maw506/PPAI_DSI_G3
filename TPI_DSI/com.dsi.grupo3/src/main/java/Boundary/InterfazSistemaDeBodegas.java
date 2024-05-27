@@ -1,46 +1,45 @@
 package Boundary;
 
 import Entidades.Bodega;
+import Entidades.Vino;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 public class InterfazSistemaDeBodegas {
 
-    private List<Bodega> bodegasConActualizaciones;
+    private List<Vino> vinosActualizaciones;
 
-    public ArrayList<Bodega> buscarActualizaciones(){
+    //esto debe devolver Vinos y no Bodegas
+
+    public static List<Vino> buscarActualizaciones(Bodega bodega) {
         Gson gson = new Gson();
-        try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("bodegasConActualizaciones.json");
-            InputStreamReader fileReader = new InputStreamReader(inputStream)) {
+        try (InputStream inputStream = InterfazSistemaDeBodegas.class.getClassLoader().getResourceAsStream("vinosActualizables.json");
+             InputStreamReader fileReader = new InputStreamReader(inputStream)) {
 
-            JsonObject jsonObject = gson.fromJson(fileReader, JsonObject.class);
-            JsonArray bodegasArray = jsonObject.getAsJsonArray("bodegas");
+            // Leer el array de vinos directamente desde el JSON
+            Type listType = new TypeToken<List<Vino>>() {}.getType();
+            List<Vino> vinos = gson.fromJson(fileReader, listType);
 
-            Type listType = new TypeToken<List<Bodega>>() {}.getType();
-            ArrayList<Bodega> bodegas = gson.fromJson(bodegasArray, listType);
-            return bodegas;
-        }catch (IOException e ){
-            e.toString();
+            // Filtrar los vinos por el nombre de la bodega
+            return vinos.stream()
+                    .filter(vino -> vino.getBodega().getNombre().equals(bodega.getNombre()))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
             return null;
-
         }
     }
 
-    public void setBodegasConActualizaciones(ArrayList<Bodega> bodegasConActualizaciones) {
-        this.bodegasConActualizaciones = bodegasConActualizaciones;
-    }
+
 }

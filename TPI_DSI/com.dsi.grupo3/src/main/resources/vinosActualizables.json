@@ -1,0 +1,34 @@
+[
+    {
+        "añada": 2018,
+        "bodega": {
+            "coordenadasUbicacion": 123456,
+            "descripcion": "Una bodega con una gran selección de vinos internacionales.",
+            "historia": "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
+            "nombre": "Bodega Internacional",
+            "periodoActualizacion": "1990-01-01"
+        },
+        "imagenEtiqueta": "https://example.com/images/vino1.jpg",
+        "nombre": "Gran Reserva",
+        "notaDeCataBodega": "Un vino robusto con notas de frutas rojas y especias.",
+        "precioARS": 1200.50,
+        "varietal": null,
+        "maridaje": null
+    },
+    {
+        "añada": 2020,
+        "bodega": {
+            "coordenadasUbicacion": 654321,
+            "descripcion": "Una bodega artesanal que produce vinos únicos y exclusivos.",
+            "historia": "Desde su fundación en 2000, Bodega Artesanal ha sido reconocida por su enfoque en la calidad.",
+            "nombre": "Bodega Artesanal",
+            "periodoActualizacion": "2024-04-20"
+        },
+        "imagenEtiqueta": "https://example.com/images/vino2.jpg",
+        "nombre": "Selección Especial",
+        "notaDeCataBodega": "Un vino elegante con aromas de flores y un toque de vainilla.",
+        "precioARS": 2500.75,
+        "varietal": null,
+        "maridaje": null
+    }
+]

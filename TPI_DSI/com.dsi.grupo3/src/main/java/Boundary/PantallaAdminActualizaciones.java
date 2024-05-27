@@ -23,7 +23,7 @@ public class PantallaAdminActualizaciones extends Application {
                 Bodega bodega = new Bodega(123, "Descripción", "Historia", "Nombre", null);
                 TipoUva tipoDeUva = new TipoUva("Descripción TipoDeUva", "Nombre TipoDeUva");
                 Varietal varietal = new Varietal("Descripción Varietal", 75.5, tipoDeUva);
-                Vino vino = new Vino(2021, "imagen_etiqueta.jpg", "Nombre del Vino", "Nota de cata de la bodega", 1500.0, varietal, null);
+                Vino vino = new Vino(2021, bodega, "imagen_etiqueta.jpg", "Nombre del Vino", "Nota de cata de la bodega", 1500.0, varietal, null);
                 Usuario usuario = new Usuario();
                 Enofilo enofilo = new Enofilo(usuario, "Nombre", "Apellido", "imagen_perfil.jpg");
                 Maridaje maridaje = new Maridaje("Descripción Maridaje", "Nombre Maridaje");

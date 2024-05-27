@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Vino {
 
     private int añada;
-
+    private Bodega bodega;
     private String imagenEtiqueta;
     private String nombre;
     private String notaDeCataBodega;
@@ -23,8 +23,8 @@ public class Vino {
 
     public void compararEtiqueta(){}
 
-    public Boolean esDeBodega(Bodega bodega){
-        if(true){       //falta la logica del metodo
+    public Boolean esDeBodega(Bodega bodegaValidar){
+        if(bodegaValidar.equals(this.bodega)){
             return true;
         }
         return false;
@@ -33,19 +33,17 @@ public class Vino {
     public void esDeRegionVitivinicola(){}
 
 
-
-
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Vino{");
         sb.append("añada=").append(añada);
+        sb.append(", bodega=").append(bodega);
         sb.append(", imagenEtiqueta='").append(imagenEtiqueta).append('\'');
         sb.append(", nombre='").append(nombre).append('\'');
-        sb.append(", \nnotaDeCataBodega='").append(notaDeCataBodega).append('\'');
-        sb.append(", \nprecioARS=").append(precioARS);
-        sb.append("\nvarietal=").append(varietal);
-        sb.append(",\n\nmaridaje=").append(maridaje);
+        sb.append(", notaDeCataBodega='").append(notaDeCataBodega).append('\'');
+        sb.append(", precioARS=").append(precioARS);
+        sb.append(", varietal=").append(varietal);
+        sb.append(", maridaje=").append(maridaje);
         sb.append('}');
         return sb.toString();
     }

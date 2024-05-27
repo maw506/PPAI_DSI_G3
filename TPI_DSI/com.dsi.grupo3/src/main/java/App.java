@@ -3,6 +3,10 @@ import Control.GestorActualizaciones;
 import Entidades.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import static javafx.scene.input.KeyCode.T;
 
 public class App {
 
@@ -10,30 +14,39 @@ public class App {
 
         TipoUva tipoUva = new TipoUva("violeta", "uva violeta");
 
+        Bodega bodega1 = new Bodega(123456, "Una bodega con una gran selección de vinos internacionales.",
+                "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
+                "Bodega Internacional",
+                "2024-05-25");
+        Bodega bodega2 = new Bodega(654321,
+                "Bodega local famosa por su vino tinto artesanal.",
+                "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
+                "Bodega Artesanal",
+                "2024-04-20");
+        ArrayList<Bodega> bodegasSist = new ArrayList<>();
+        bodegasSist.add(bodega1);
+        bodegasSist.add(bodega2);
+
         Varietal varietal =  new Varietal("varietal", 12.5f, tipoUva);
         Maridaje maridaje = new Maridaje();
-
-        Vino vino = new Vino(2015, "imagen.jpg", "Balbo", "es rico con pritty",
-                1500.50, varietal, maridaje);
-
-        System.out.println();
-        System.out.println(vino.toString() );
 
         GestorActualizaciones control = new GestorActualizaciones();
 
 
-        Vino nuevo = control.crearVino();
+        System.out.println("En esta parte el gestor busca las bodegas con actualizaciones: \n");
+        control.buscarBodegasConActualizaciones(bodegasSist, "2024-04-20");
+        System.out.println(control.getBodegas().toString());
 
-        System.out.println("\n\nEn esta parte el control crea un nuevo vino");
-        System.out.println(nuevo.toString());
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\n Seleccione la bodega a actualizar: ");
+        String nombre = sc.nextLine();
+        control.tomarSeleccionBodega(nombre, bodegasSist);
+        System.out.println("La bodega que selecciono es:" +
+                "\n" + control.getBodegaSeleccionada().toString());
+        control.buscarActualizaciones();
 
-        System.out.println("\n En esta parte pruebo el metodo de la interfaz bodegas");
-        InterfazSistemaDeBodegas interfazSistemaDeBodegas = new InterfazSistemaDeBodegas();
-
-        ArrayList<Bodega> bodegasActualizadas = interfazSistemaDeBodegas.buscarActualizaciones();
-        for(Bodega b: bodegasActualizadas){
-            System.out.println(b.getNombre().toString());
-        }
+        System.out.println("Mostramos los vinos a actualizar");
+        System.out.println(control.getVinosActualizables().stream().toList());
 
     }
 }
