@@ -28,7 +28,8 @@ public class InterfazSistemaDeBodegas {
              InputStreamReader fileReader = new InputStreamReader(inputStream)) {
 
             // Leer el array de vinos directamente desde el JSON
-            Type listType = new TypeToken<List<Vino>>() {}.getType();
+            Type listType = new TypeToken<List<Vino>>() {
+            }.getType();
             List<Vino> vinos = gson.fromJson(fileReader, listType);
 
             // Filtrar los vinos por el nombre de la bodega

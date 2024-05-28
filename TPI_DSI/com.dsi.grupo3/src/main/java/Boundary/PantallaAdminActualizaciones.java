@@ -25,14 +25,14 @@ public class PantallaAdminActualizaciones extends Application {
                 Varietal varietal = new Varietal("Descripción Varietal", 75.5, tipoDeUva);
                 Vino vino = new Vino(2021, bodega, "imagen_etiqueta.jpg", "Nombre del Vino", "Nota de cata de la bodega", 1500.0, varietal, null);
                 Usuario usuario = new Usuario();
-                Enofilo enofilo = new Enofilo(usuario, "Nombre", "Apellido", "imagen_perfil.jpg");
+                // Enofilo enofilo = new Enofilo(usuario, "Nombre", "Apellido", "imagen_perfil.jpg");
                 Maridaje maridaje = new Maridaje("Descripción Maridaje", "Nombre Maridaje");
 
                 // Imprimir las clases instanciadas en la consola
                 System.out.println("Clases Instanciadas:");
                 System.out.println("Bodega: " + bodega);
                 System.out.println("Vino: " + vino);
-                System.out.println("Enófilo: " + enofilo);
+                //System.out.println("Enófilo: " + enofilo);
                 System.out.println("Tipo de Uva: " + tipoDeUva);
                 System.out.println("Maridaje: " + maridaje);
                 System.out.println("Varietal: " + varietal);

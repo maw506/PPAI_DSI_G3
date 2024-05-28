@@ -1,12 +1,9 @@
-import Boundary.InterfazSistemaDeBodegas;
 import Control.GestorActualizaciones;
 import Entidades.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static javafx.scene.input.KeyCode.T;
 
 public class App {
 
@@ -27,7 +24,7 @@ public class App {
         bodegasSist.add(bodega1);
         bodegasSist.add(bodega2);
 
-        Varietal varietal =  new Varietal("varietal", 12.5f, tipoUva);
+        Varietal varietal = new Varietal("varietal", 12.5f, tipoUva);
         Maridaje maridaje = new Maridaje();
 
         GestorActualizaciones control = new GestorActualizaciones();
@@ -46,7 +43,26 @@ public class App {
         control.buscarActualizaciones();
 
         System.out.println("Mostramos los vinos a actualizar");
-        System.out.println(control.getVinosActualizables().stream().toList());
+        System.out.println(control.getVinosImportados().stream().toList());
+
+        System.out.println("\nProbamos la parte de buscar a los seguidos de un enofilo");
+        List<Bodega> seguidoBodegas = new ArrayList<>();
+        seguidoBodegas.add(bodega1);
+        //creo las bodegas que sigue
+
+        Siguiendo seguido = new Siguiendo(seguidoBodegas, null, "24-04-04", "24-04-04");
+        List<Siguiendo> seguidos = new ArrayList<>();
+        seguidos.add(seguido);
+
+        Enofilo enofilo = new Enofilo(null, seguidos, "Maxi", "Martinez", "img.png");
+        List<Enofilo> enofilosDelSistema = new ArrayList<>();
+        enofilosDelSistema.add(enofilo);
+
+        //el gestor busca los que siguen a la bodega pasada por parametro
+        control.buscarSeguidores(enofilosDelSistema, bodega1);
+
+        System.out.println(control.getUsuarios().stream().toList());
+
 
     }
 }

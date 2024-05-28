@@ -4,8 +4,10 @@ package Entidades;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +19,6 @@ public class Bodega {
     private String historia;
     private String nombre;
     private String periodoActualizacion;
-
 
 
     public boolean hayActualizaciones(String fechaActual) {
@@ -33,8 +34,19 @@ public class Bodega {
     }
 
     public Boolean tenesEsteVino(Vino vino) {
+        vino.sosEsteVino(vino);
+
         return null;
     }
+
+    /* Por el momento lo dejo asi
+
+    public void actualizarDatosDeVino(List<Vino> vinosList, List<Vino> vinosDeBodega){
+        for(Vino vino : vinosList){
+            for()
+            vino.setPrecioARS();
+        }
+    }*/
 
     @Override
     public String toString() {

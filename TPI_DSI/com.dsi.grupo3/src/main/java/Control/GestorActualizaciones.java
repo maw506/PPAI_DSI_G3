@@ -7,12 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static java.lang.System.in;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -24,9 +21,11 @@ public class GestorActualizaciones {
 
     private Vino vino;
 
+    private List<Vino> vinosImportados;
+
     private List<Vino> vinosActualizables;
 
-    private List<Enofilo> enofilos;
+    private List<String> usuarios;
 
     private Varietal varietal;
 
@@ -43,13 +42,10 @@ public class GestorActualizaciones {
     public void buscarBodegasConActualizaciones(ArrayList<Bodega> bodegas, String fechaActual){
         //busca entre las bodegas existentes en el sistema
         ArrayList<String> buscadas = new ArrayList<>();
-        int index = 0;
         for(Bodega b: bodegas){     //podria hacerse con while pero es mas sencillo un foreach
             if(b.hayActualizaciones(fechaActual)){
                 buscadas.add(b.getNombre());
                 setBodegas(buscadas);
-                //Falta ver que hacer con el metodo getNombre()
-                //guarda solo el nombre o la bodega?
             }
         }
     }
@@ -75,11 +71,26 @@ public class GestorActualizaciones {
     public void buscarActualizaciones(){
         List<Vino> vinosAux;
         vinosAux = InterfazSistemaDeBodegas.buscarActualizaciones(this.bodegaSeleccionada); //el segundo es el metodo de interfaz sist de bodegas
-        setVinosActualizables(vinosAux);
+        setVinosImportados(vinosAux);
+    }
 
+
+    public void determinarVinosActualizar(){
+        List<Vino> vinosAux =new ArrayList<>(0);
+        for(Vino vino: this.vinosImportados){
+            if(bodegaSeleccionada.tenesEsteVino(vino)) vinosAux.add(vino);
+        }
+        setVinosActualizables(vinosAux);
     }
 
     public void actualizarDatosDeVinos(){
+        for(Vino vino : this.vinosActualizables){
+            /*vino.setPrecioARS();
+            vino.setImagenEtiqueta();
+            vino.setNotaDeCataBodega();*/
+
+            //falta la logica
+        }
 
     }
 
@@ -101,8 +112,12 @@ public class GestorActualizaciones {
         return nuevo;
     }
 
-    public void buscarSeguidores(){
-
+    public void buscarSeguidores(List<Enofilo> enofilosSistema, Bodega bodega){
+        List<String> auxEnofilos = new ArrayList<>(0);
+        for(Enofilo enofilo : enofilosSistema){
+            if(enofilo.seguisBodega(bodega)) auxEnofilos.add(enofilo.getUsuario().getNombre());
+        }
+        setUsuarios(auxEnofilos);
     }
 
     public void finDelCU(){

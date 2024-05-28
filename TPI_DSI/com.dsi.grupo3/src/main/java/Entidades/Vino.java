@@ -19,18 +19,36 @@ public class Vino {
     private Maridaje maridaje;
 
 
-    public void calcularRanking(){}
+    public void calcularRanking() {
+    }
 
-    public void compararEtiqueta(){}
+    public void compararEtiqueta() {
+    }
 
-    public Boolean esDeBodega(Bodega bodegaValidar){
-        if(bodegaValidar.equals(this.bodega)){
+    public Boolean esDeBodega(Bodega bodegaValidar) {
+        if (bodegaValidar.equals(this.bodega)) {
             return true;
         }
         return false;
     }
 
-    public void esDeRegionVitivinicola(){}
+    public Boolean sosEsteVino(Vino vino) {
+        if (vino == null) {
+            return false;
+        }
+        return this.añada == vino.añada &&
+                this.bodega.equals(vino.bodega) &&
+                this.nombre.equals(vino.nombre) &&
+                this.varietal.equals(vino.varietal) &&
+                this.maridaje.equals(vino.maridaje) &&
+                Double.compare(this.precioARS, vino.precioARS) == 0 &&
+                this.imagenEtiqueta.equals(vino.imagenEtiqueta) &&
+                this.notaDeCataBodega.equals(vino.notaDeCataBodega);
+    }
+
+
+    public void esDeRegionVitivinicola() {
+    }
 
 
     @Override
