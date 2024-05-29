@@ -1,6 +1,9 @@
+import Boundary.PantallaAdminActualizaciones;
+import Boundary.PantallaAdminActualizacionesFX;
 import Control.GestorActualizaciones;
 import Entidades.*;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +12,10 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
+
+        PantallaAdminActualizaciones pantallaAdminActualizaciones = new PantallaAdminActualizaciones();
+        GestorActualizaciones control = new GestorActualizaciones();
+        pantallaAdminActualizaciones.setGestor(control);
 
         TipoUva tipoUva = new TipoUva("violeta", "uva violeta");
 
@@ -46,41 +53,26 @@ public class App {
         Vino vino2 = new Vino(2, bodega2, "favicon.ico", "Vino 2", "nota de cata", 12.5, varietal, maridaje);
         Vino vino3 = new Vino(3, bodega3, "favicon.ico", "Vino 3", "nota de cata", 12.5, varietal, maridaje);
 
-        GestorActualizaciones control = new GestorActualizaciones();
 
-
-        System.out.println("En esta parte el gestor busca las bodegas con actualizaciones: \n");
-        control.buscarBodegasConActualizaciones(bodegasSist, LocalDate.now());
-        System.out.println(control.getBodegas().toString());
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\n Seleccione la bodega a actualizar: ");
-        String nombre = sc.nextLine();
-        control.tomarSeleccionBodega(nombre, bodegasSist);
-        System.out.println("La bodega que selecciono es:" +
-                "\n" + control.getBodegaSeleccionada().toString());
-        control.buscarActualizaciones();
-
-        System.out.println("Mostramos los vinos a actualizar");
-        System.out.println(control.getVinosImportados().stream().toList());
-
-        System.out.println("\nProbamos la parte de buscar a los seguidos de un enofilo");
         List<Bodega> seguidoBodegas = new ArrayList<>();
         seguidoBodegas.add(bodega1);
         //creo las bodegas que sigue
 
         Siguiendo seguido = new Siguiendo(seguidoBodegas, null, "24-04-04", "24-04-04");
-        List<Siguiendo> seguidos = new ArrayList<>();
+        ArrayList<Siguiendo> seguidos = new ArrayList<>();
         seguidos.add(seguido);
 
         Enofilo enofilo = new Enofilo(null, seguidos, "Maxi", "Martinez", "img.png");
         List<Enofilo> enofilosDelSistema = new ArrayList<>();
         enofilosDelSistema.add(enofilo);
 
-        //el gestor busca los que siguen a la bodega pasada por parametro
-        control.buscarSeguidores(enofilosDelSistema, bodega1);
+        //Arranca el CU
+        System.out.println();
 
-        System.out.println(control.getUsuarios().stream().toList());
+        pantallaAdminActualizaciones.opcionImportarActDeVinoDeBodega(bodegasSist);
+        System.out.println(control.getBodegas().stream().toList());
+        pantallaAdminActualizaciones.mostrarBodega();
+
 
 
     }

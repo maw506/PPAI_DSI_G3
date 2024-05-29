@@ -1,6 +1,7 @@
 package Control;
 
 import Boundary.InterfazSistemaDeBodegas;
+import Boundary.PantallaAdminActualizaciones;
 import Entidades.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class GestorActualizaciones {
 
     private Maridaje maridaje;
 
+    //private PantallaAdminActualizaciones pantallaAdminActualizaciones;
 
     public void opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, LocalDate fechaActual){
         // busca las bodegas con actualizaciones
@@ -50,6 +52,7 @@ public class GestorActualizaciones {
                 setBodegas(buscadas);
             }
         }
+
     }
 
     //metodo de soporte?
