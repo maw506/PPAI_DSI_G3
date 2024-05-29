@@ -34,12 +34,13 @@ public class GestorActualizaciones {
     private Maridaje maridaje;
 
 
-    public void opcionImportarActDeVinoDeBodega(){
-        buscarBodegasConActualizaciones(null, null);
+    public void opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, String fechaActual){ 
+        // busca las bodegas con actualizaciones
+        buscarBodegasConActualizaciones(bodega, fechaActual);
     }
     //ver logica del metodo
 
-    public void buscarBodegasConActualizaciones(ArrayList<Bodega> bodegas, String fechaActual){
+    public void buscarBodegasConActualizaciones(ArrayList<Bodega> bodegas, String fechaActual){ // Esto no sería mejor como guardar bodegas con actualizaciones?
         //busca entre las bodegas existentes en el sistema
         ArrayList<String> buscadas = new ArrayList<>();
         for(Bodega b: bodegas){     //podria hacerse con while pero es mas sencillo un foreach
@@ -60,7 +61,7 @@ public class GestorActualizaciones {
         return null;
     }
 
-    public void tomarSeleccionBodega(String nombreBodega, List<Bodega> bodegasDelSist){
+    public void tomarSeleccionBodega(String nombreBodega, List<Bodega> bodegasDelSist){ // nombreBodega es ingresado por el usuario para buscar entre las Bodegas existentes
         for(Bodega bodega: bodegasDelSist){
             if(bodega.getNombre().equals(nombreBodega)){
                 this.setBodegaSeleccionada(bodega);
@@ -83,19 +84,30 @@ public class GestorActualizaciones {
         setVinosActualizables(vinosAux);
     }
 
-    public void actualizarDatosDeVinos(){
-        for(Vino vino : this.vinosActualizables){
-            /*vino.setPrecioARS();
-            vino.setImagenEtiqueta();
-            vino.setNotaDeCataBodega();*/
+    public void actualizarDatosDeVinos(List<Vino> vinosSistema) {
+        for (int i = 0; i < vinosSistema.size(); i++) {
+            Vino vinoActual = vinosSistema.get(i);              // Aqui se asume que la posicion del vinoActual se encuentra en la misma posicion que el vinoActualizable, se recomienda que se busque el vino en el sistema (por nombre?)
+            Vino vinoActualizable = vinosActualizables.get(i);
 
-            //falta la logica
+            vinoActual.setPrecioARS(vinoActualizable.getPrecioARS());
+            vinoActual.setImagenEtiqueta(vinoActualizable.getImagenEtiqueta());
+            vinoActual.setNotaDeCataBodega(vinoActualizable.getNotaDeCataBodega());
         }
-
     }
 
-    public void buscarVarietal(ArrayList<Vino> vinos){
+    // public void actualizarDatosDeVinos(){
+    //     for(Vino vino : this.vinosActualizables){
+    //         /*vino.setPrecioARS();
+    //         vino.setImagenEtiqueta();
+    //         vino.setNotaDeCataBodega();*/
 
+    //         //falta la logica
+    //     }
+
+    // }
+
+    public void buscarVarietal(ArrayList<Vino> vinos){
+        
     }
 
     public void buscarTipoUva(){
@@ -121,6 +133,6 @@ public class GestorActualizaciones {
     }
 
     public void finDelCU(){
-
+        
     }
 }

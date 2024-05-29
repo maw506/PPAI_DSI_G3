@@ -19,6 +19,7 @@ public class Bodega {
     private String historia;
     private String nombre;
     private String periodoActualizacion;
+    private String fechaUltimaActualizacion; // Se agrego el atributo de la ultima actialización cargada
 
 
     public boolean hayActualizaciones(String fechaActual) {

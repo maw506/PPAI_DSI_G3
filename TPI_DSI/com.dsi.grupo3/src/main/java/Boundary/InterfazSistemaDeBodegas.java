@@ -34,7 +34,7 @@ public class InterfazSistemaDeBodegas {
 
             // Filtrar los vinos por el nombre de la bodega
             return vinos.stream()
-                    .filter(vino -> vino.getBodega().getNombre().equals(bodega.getNombre()))
+                    .filter(vino -> vino.getBodega().getNombre().equals(bodega.getNombre())) // Quitar porque un vino tiene solo una bodega
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
