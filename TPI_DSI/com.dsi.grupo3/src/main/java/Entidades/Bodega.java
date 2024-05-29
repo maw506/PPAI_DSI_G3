@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,20 +18,18 @@ public class Bodega {
     private String descripcion;
     private String historia;
     private String nombre;
-    private String periodoActualizacion;
-    private String fechaUltimaActualizacion; // Se agrego el atributo de la ultima actialización cargada
+    private int periodoActualizacion;// cada cierto periodo se reciben actualizaciones
+    private LocalDate fechaUltimaActualizacion; //debe estar en formato meses
 
 
-    public boolean hayActualizaciones(String fechaActual) {
-        if (validarFechaUltimaActualizacion().equals(fechaActual)) {
-            return true;
-        }
-        return false;
+    public boolean hayActualizaciones(LocalDate fechaActual) {
+        return validarFechaUltimaActualizacion(fechaActual);
     }
 
 
-    public String validarFechaUltimaActualizacion() {
-        return this.periodoActualizacion;
+    public Boolean validarFechaUltimaActualizacion(LocalDate fechaActual) {
+        long mesesPasados = ChronoUnit.MONTHS.between(this.fechaUltimaActualizacion, fechaActual);
+        return mesesPasados >= this.periodoActualizacion;
     }
 
     public Boolean tenesEsteVino(Vino vino) {

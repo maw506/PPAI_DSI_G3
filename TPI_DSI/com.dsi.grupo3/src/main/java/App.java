@@ -1,6 +1,7 @@
 import Control.GestorActualizaciones;
 import Entidades.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,26 +15,26 @@ public class App {
         Bodega bodega1 = new Bodega(123456, "Una bodega con una gran selección de vinos internacionales.",
                 "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
                 "Bodega Internacional",
-                "2024-05-25",
-                null);  
+                2,
+                LocalDate.of(2024,5,3));
         Bodega bodega2 = new Bodega(654321,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
                 "Bodega Artesanal",
-                "2024-04-20",
-                null);
+                3,
+                LocalDate.of(2024,5,3));
         Bodega bodega3 = new Bodega(123456,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
                 "Bodega Artesanal",
-                "2024-04-20",
-                null);
+                2,
+                LocalDate.of(2024,5,3));
         Bodega bodega4 = new Bodega(123456,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
                 "Bodega Artesanal",
-                "2024-04-20",
-                null);
+                5,
+                LocalDate.of(2024,5,3));
         ArrayList<Bodega> bodegasSist = new ArrayList<>();
         bodegasSist.add(bodega1);
         bodegasSist.add(bodega2);
@@ -49,7 +50,7 @@ public class App {
 
 
         System.out.println("En esta parte el gestor busca las bodegas con actualizaciones: \n");
-        control.buscarBodegasConActualizaciones(bodegasSist, "2024-04-20");
+        control.buscarBodegasConActualizaciones(bodegasSist, LocalDate.now());
         System.out.println(control.getBodegas().toString());
 
         Scanner sc = new Scanner(System.in);

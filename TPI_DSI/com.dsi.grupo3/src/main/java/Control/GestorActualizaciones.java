@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,13 +35,13 @@ public class GestorActualizaciones {
     private Maridaje maridaje;
 
 
-    public void opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, String fechaActual){ 
+    public void opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, LocalDate fechaActual){
         // busca las bodegas con actualizaciones
         buscarBodegasConActualizaciones(bodega, fechaActual);
     }
     //ver logica del metodo
 
-    public void buscarBodegasConActualizaciones(ArrayList<Bodega> bodegas, String fechaActual){ // Esto no sería mejor como guardar bodegas con actualizaciones?
+    public void buscarBodegasConActualizaciones(ArrayList<Bodega> bodegas, LocalDate fechaActual){ // Esto no sería mejor como guardar bodegas con actualizaciones?
         //busca entre las bodegas existentes en el sistema
         ArrayList<String> buscadas = new ArrayList<>();
         for(Bodega b: bodegas){     //podria hacerse con while pero es mas sencillo un foreach
