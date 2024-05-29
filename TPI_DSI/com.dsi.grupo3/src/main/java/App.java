@@ -67,14 +67,29 @@ public class App {
 
         //Arranca el CU
         System.out.println();
-        //falta el metodo opcionImportarVinosDeBodega
+        //falta el metodo opcionImportarVinosDeBodega de la clase pantalla
         pantallaAdminActualizaciones.habilitarPantalla();
-        control.opcionImportarActDeVinoDeBodega(bodegasSist,LocalDate.now());
-        pantallaAdminActualizaciones.mostrarBodega(control.getBodegas());
-        System.out.println("\n");
-        control.solicitarSeleccionBodegas(pantallaAdminActualizaciones, bodegasSist);
-        System.out.println("\n");
-        System.out.println(control.getVinosImportados().stream().toList());
+
+        Boolean flag = control.opcionImportarActDeVinoDeBodega(bodegasSist,LocalDate.now()); //
+        if(flag){ //aca deberian ir todas las llamadas al gestor y a la pantalla
+            System.out.println("Hay actualizaciones!!!!");
+            System.out.println("\nCargando las bodegas ccon actualizaciones...");
+            //la pantalla muestra las bodegas pero solo los nombres
+            pantallaAdminActualizaciones.mostrarBodega(control.getBodegas());
+            System.out.println("\n");
+            //aca hay que ingresar el nombre de la bodega tal cual aparece porque si no no funciona
+            control.solicitarSeleccionBodegas(pantallaAdminActualizaciones, bodegasSist); //dentro de este metodo esta el paso 5 que busca las actualizaciones
+            System.out.println("\n");
+            //esto es a modo de comprobacion para ver si funcionaba el metodo
+            System.out.println(control.getVinosImportados().stream().toList());
+            //falta que el sistema actualice los vinos y la pantalla los muestre
+
+
+
+        }
+        else{ //esto podria ser el flujo alternativo
+            System.out.println("No hay actualizaciones");
+        }
 
 
     }
