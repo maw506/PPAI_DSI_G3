@@ -70,7 +70,6 @@ public class PantallaAdminActualizacionesFX extends Application {
         if(bodega.hayActualizaciones(LocalDate.now())){
             System.out.println("Hay actualizaciones");
 
-            gestor.buscarBodegasConActualizaciones(bodegasDelSist, LocalDate.now());
 
             mostrarBodega(bodegasNombre);
         }

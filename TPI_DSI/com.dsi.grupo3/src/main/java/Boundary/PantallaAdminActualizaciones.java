@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @NoArgsConstructor
 @Data
@@ -26,9 +27,7 @@ public class PantallaAdminActualizaciones {
 
     public void opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodegasDelSistema){
         habilitarPantalla();
-        gestor.buscarBodegasConActualizaciones(bodegasDelSistema, LocalDate.now());
-        ArrayList<String> aux = new ArrayList<>(gestor.getBodegas());
-        setNombresBodega(gestor.getBodegas());
+
     }
 
     public void habilitarPantalla(){
@@ -36,18 +35,25 @@ public class PantallaAdminActualizaciones {
         System.out.println("\n\n");
     }
 
-    public void mostrarBodega(){
+    public void mostrarBodega(List<String> nombresBodega){
         for(String b : nombresBodega){
             System.out.println(b);
         }
     }
 
-    public void solicitarSeleccionBodegas(String nombre){
-        tomarSeleccionBodega(nombre);
+    public void solicitarSeleccionBodegas(){
+        tomarSeleccionBodega();
+        System.out.println("\n");
+        System.out.println("##### Estas son las nuevas actualizaciones #####");
     }
 
-    public void tomarSeleccionBodega(String nombre){
-        setBodegaSeleccionada(nombre);
+    public void tomarSeleccionBodega(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Seleccione la bodega a actualizar: ");
+        String bodega = sc.nextLine();
+        setBodegaSeleccionada(bodega);
+
     }
 
     public void mostrarOpcionFinalizar(){

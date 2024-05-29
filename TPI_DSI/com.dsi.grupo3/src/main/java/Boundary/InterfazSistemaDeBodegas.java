@@ -2,6 +2,7 @@ package Boundary;
 
 import Entidades.Bodega;
 import Entidades.Vino;
+import Soporte.LocalDateAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.Data;
@@ -14,22 +15,25 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
-@NoArgsConstructor
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.time.LocalDate;
+
 public class InterfazSistemaDeBodegas {
 
     private List<Vino> vinosActualizaciones;
 
-    //esto debe devolver Vinos y no Bodegas
-
+    // Esto debe devolver Vinos y no Bodegas
     public static List<Vino> buscarActualizaciones(Bodega bodega) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+
         try (InputStream inputStream = InterfazSistemaDeBodegas.class.getClassLoader().getResourceAsStream("vinosActualizables.json");
              InputStreamReader fileReader = new InputStreamReader(inputStream)) {
 
             // Leer el array de vinos directamente desde el JSON
-            Type listType = new TypeToken<List<Vino>>() {
-            }.getType();
+            Type listType = new TypeToken<List<Vino>>() {}.getType();
             List<Vino> vinos = gson.fromJson(fileReader, listType);
 
             // Filtrar los vinos por el nombre de la bodega
@@ -41,6 +45,4 @@ public class InterfazSistemaDeBodegas {
             return null;
         }
     }
-
-
 }

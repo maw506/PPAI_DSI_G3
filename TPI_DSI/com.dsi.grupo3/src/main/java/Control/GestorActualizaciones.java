@@ -35,10 +35,9 @@ public class GestorActualizaciones {
 
     private Maridaje maridaje;
 
-    //private PantallaAdminActualizaciones pantallaAdminActualizaciones;
 
     public void opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, LocalDate fechaActual){
-        // busca las bodegas con actualizaciones
+        // busca las bodegas del sistema con actualizaciones
         buscarBodegasConActualizaciones(bodega, fechaActual);
     }
     //ver logica del metodo
@@ -52,7 +51,11 @@ public class GestorActualizaciones {
                 setBodegas(buscadas);
             }
         }
+    }
 
+    public void solicitarSeleccionBodegas(PantallaAdminActualizaciones pantalla, List<Bodega> bodegasDelSist){
+        pantalla.solicitarSeleccionBodegas();
+        tomarSeleccionBodega(pantalla.getBodegaSeleccionada(), bodegasDelSist);
     }
 
     //metodo de soporte?
@@ -68,9 +71,11 @@ public class GestorActualizaciones {
     public void tomarSeleccionBodega(String nombreBodega, List<Bodega> bodegasDelSist){ // nombreBodega es ingresado por el usuario para buscar entre las Bodegas existentes
         for(Bodega bodega: bodegasDelSist){
             if(bodega.getNombre().equals(nombreBodega)){
-                this.setBodegaSeleccionada(bodega);
+                setBodegaSeleccionada(bodega);
             }
         }
+
+        buscarActualizaciones();
     }
 
     public void buscarActualizaciones(){

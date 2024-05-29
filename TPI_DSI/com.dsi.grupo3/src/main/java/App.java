@@ -15,7 +15,6 @@ public class App {
 
         PantallaAdminActualizaciones pantallaAdminActualizaciones = new PantallaAdminActualizaciones();
         GestorActualizaciones control = new GestorActualizaciones();
-        pantallaAdminActualizaciones.setGestor(control);
 
         TipoUva tipoUva = new TipoUva("violeta", "uva violeta");
 
@@ -23,7 +22,7 @@ public class App {
                 "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
                 "Bodega Internacional",
                 2,
-                LocalDate.of(2024,5,3));
+                LocalDate.of(2024,3,3));
         Bodega bodega2 = new Bodega(654321,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
@@ -68,11 +67,14 @@ public class App {
 
         //Arranca el CU
         System.out.println();
-
-        pantallaAdminActualizaciones.opcionImportarActDeVinoDeBodega(bodegasSist);
-        System.out.println(control.getBodegas().stream().toList());
-        pantallaAdminActualizaciones.mostrarBodega();
-
+        //falta el metodo opcionImportarVinosDeBodega
+        pantallaAdminActualizaciones.habilitarPantalla();
+        control.opcionImportarActDeVinoDeBodega(bodegasSist,LocalDate.now());
+        pantallaAdminActualizaciones.mostrarBodega(control.getBodegas());
+        System.out.println("\n");
+        control.solicitarSeleccionBodegas(pantallaAdminActualizaciones, bodegasSist);
+        System.out.println("\n");
+        System.out.println(control.getVinosImportados().stream().toList());
 
 
     }
