@@ -83,16 +83,16 @@ public class GestorActualizaciones {
         setVinosActualizables(vinosAux);
     }
 
-    public void actualizarDatosDeVinos(){
-        for(Vino vino : this.vinosActualizables){
-            /*vino.setPrecioARS();
-            vino.setImagenEtiqueta();
-            vino.setNotaDeCataBodega();*/
-
-            //falta la logica
-        }
-
+    public void actualizarDatosDeVinos(List<Vino>vinos) {
+        /*for (int i = 0; i < vinos.size(); i++){
+            Vino vinoActual = vinos.get(i);
+            Vino vinoActualizable = vinosActualizables.get(i);
+            vinoActual.setPrecioARS(vinoActualizable.getPrecioARS());
+            vinoActual.setImagenEtiqueta(vinoActualizable.getImagenEtiqueta());
+            vinoActual.setNotaDeCataBodega(vinoActualizable.getNotaDeCataBodega());
+        }*/
     }
+
 
     public void buscarVarietal(ArrayList<Vino> vinos){
 
