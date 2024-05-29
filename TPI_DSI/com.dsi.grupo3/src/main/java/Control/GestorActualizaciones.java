@@ -36,9 +36,13 @@ public class GestorActualizaciones {
     private Maridaje maridaje;
 
 
-    public void opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, LocalDate fechaActual){
+    public boolean opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, LocalDate fechaActual){
         // busca las bodegas del sistema con actualizaciones
         buscarBodegasConActualizaciones(bodega, fechaActual);
+        if(!bodegas.isEmpty()){
+            return true;
+        }
+        return false;
     }
     //ver logica del metodo
 
