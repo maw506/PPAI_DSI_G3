@@ -14,18 +14,36 @@ public class App {
         Bodega bodega1 = new Bodega(123456, "Una bodega con una gran selección de vinos internacionales.",
                 "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
                 "Bodega Internacional",
-                "2024-05-25");
+                "2024-05-25",
+                null);  
         Bodega bodega2 = new Bodega(654321,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
                 "Bodega Artesanal",
-                "2024-04-20");
+                "2024-04-20",
+                null);
+        Bodega bodega3 = new Bodega(123456,
+                "Bodega local famosa por su vino tinto artesanal.",
+                "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
+                "Bodega Artesanal",
+                "2024-04-20",
+                null);
+        Bodega bodega4 = new Bodega(123456,
+                "Bodega local famosa por su vino tinto artesanal.",
+                "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
+                "Bodega Artesanal",
+                "2024-04-20",
+                null);
         ArrayList<Bodega> bodegasSist = new ArrayList<>();
         bodegasSist.add(bodega1);
         bodegasSist.add(bodega2);
 
         Varietal varietal = new Varietal("varietal", 12.5f, tipoUva);
         Maridaje maridaje = new Maridaje();
+
+        Vino vino1 = new Vino(1, bodega1, "favicon.ico", "Vino 1", "nota de cata", 12.5, varietal, maridaje);
+        Vino vino2 = new Vino(2, bodega2, "favicon.ico", "Vino 2", "nota de cata", 12.5, varietal, maridaje);
+        Vino vino3 = new Vino(3, bodega3, "favicon.ico", "Vino 3", "nota de cata", 12.5, varietal, maridaje);
 
         GestorActualizaciones control = new GestorActualizaciones();
 
