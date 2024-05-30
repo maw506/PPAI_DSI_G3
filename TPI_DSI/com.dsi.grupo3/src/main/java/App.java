@@ -1,13 +1,10 @@
 import Boundary.PantallaAdminActualizaciones;
-import Boundary.PantallaAdminActualizacionesFX;
 import Control.GestorActualizaciones;
 import Entidades.*;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class App {
 
@@ -16,13 +13,14 @@ public class App {
         PantallaAdminActualizaciones pantallaAdminActualizaciones = new PantallaAdminActualizaciones();
         GestorActualizaciones control = new GestorActualizaciones();
 
-        TipoUva tipoUva = new TipoUva("violeta", "uva violeta");
+        TipoUva tipoUva = new TipoUva("Descripción del tipo de uva.",
+                "Tipo Uva 1");
 
         Bodega bodega1 = new Bodega(123456, "Una bodega con una gran selección de vinos internacionales.",
                 "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
                 "Bodega Internacional",
                 2,
-                LocalDate.of(2024,3,3));
+                LocalDate.of(2024,3,1));
         Bodega bodega2 = new Bodega(654321,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
@@ -45,13 +43,15 @@ public class App {
         bodegasSist.add(bodega1);
         bodegasSist.add(bodega2);
 
-        Varietal varietal = new Varietal("varietal", 12.5f, tipoUva);
-        Maridaje maridaje = new Maridaje();
+        Varietal varietal = new Varietal("Varietal único con sabor distintivo.", 75.5f, tipoUva);
+        Maridaje maridaje = new Maridaje("Perfecto con carnes rojas y quesos fuertes.", "Maridaje 1");
 
-        Vino vino1 = new Vino(1, bodega1, "favicon.ico", "Vino 1", "nota de cata", 12.5, varietal, maridaje);
+        Vino vino1 = new Vino(2018, bodega1, "https://example.com/images/vino1.jpg", "Gran Reserva", "nota de cata", 12.5, varietal,maridaje);
         Vino vino2 = new Vino(2, bodega2, "favicon.ico", "Vino 2", "nota de cata", 12.5, varietal, maridaje);
         Vino vino3 = new Vino(3, bodega3, "favicon.ico", "Vino 3", "nota de cata", 12.5, varietal, maridaje);
 
+        List<Vino> vinosDelSist = new ArrayList<>();
+        vinosDelSist.add(vino1);
 
         List<Bodega> seguidoBodegas = new ArrayList<>();
         seguidoBodegas.add(bodega1);
@@ -84,8 +84,21 @@ public class App {
             System.out.println(control.getVinosImportados().stream().toList());
             //falta que el sistema actualice los vinos y la pantalla los muestre
 
+            //arranca la actualizacion
+            //determina los vinos que se van a actualizar
+            control.determinarVinosActualizar();
+            //y si el metodo funcionó
+            System.out.println("Vinos Actualizables");
+            System.out.println(control.getVinosActualizables().stream().toList());
+
+            System.out.println("\n"+control.actualizarDatosDeVino(vinosDelSist));
 
 
+            //envia notificacion a enofilos
+            control.buscarSeguidores(enofilosDelSistema, bodega1); // falta probarlo
+
+            //Finalizar el programa
+            pantallaAdminActualizaciones.mostrarOpcionFinalizar(control);
         }
         else{ //esto podria ser el flujo alternativo
             System.out.println("No hay actualizaciones");

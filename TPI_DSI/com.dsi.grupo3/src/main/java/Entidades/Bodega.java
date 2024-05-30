@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -32,31 +33,20 @@ public class Bodega {
         return mesesPasados >= this.periodoActualizacion;
     }
 
-    public Boolean tenesEsteVino(Vino vino) {
-        vino.sosEsteVino(vino);
-
-        return null;
+    public boolean tenesEsteVino(Vino vino) {
+        return vino.sosEsteVino(vino);
     }
 
-    /* Por el momento lo dejo asi
-
-    public void actualizarDatosDeVino(List<Vino> vinosList, List<Vino> vinosDeBodega){
-        for(Vino vino : vinosList){
-            for()
-            vino.setPrecioARS();
+    public String actualizarDatosDeVino(List<Vino> vinosSistema, List<Vino> vinosActualizables) {
+        String mensaje = " No es actualizable";
+        for (Vino vinoActualizable : vinosActualizables) {
+            if(vinoActualizable.sosVinoActualizable(vinosSistema)){
+                mensaje = "Es vino actualizable";}
         }
-    }*/
-
-    @Override
-    public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return "Bodega{" +
-                "coordenadasUbicacion=" + coordenadasUbicacion +
-                ", descripcion='" + descripcion + '\'' +
-                ", historia='" + historia + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", periodoActualizacion=" + periodoActualizacion +
-                '}';
+        return mensaje;
     }
+
+
+
 
 }

@@ -56,12 +56,17 @@ public class PantallaAdminActualizaciones {
 
     }
 
-    public void mostrarOpcionFinalizar(){
-
+    public void mostrarOpcionFinalizar(GestorActualizaciones control) {
+        System.out.println("Desea finalizar? (sí/no)");
+        Scanner sc = new Scanner(System.in);
+        String respuesta = sc.nextLine();
+        if (respuesta.equalsIgnoreCase("sí")) {
+            opcionFinalizar(control);
+        }
     }
 
-    public void opcionFinalizar(){
-
+    public void opcionFinalizar(GestorActualizaciones control) {
+        System.out.println("Finalizando...");
+        control.finDelCU();
     }
-
 }

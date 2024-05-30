@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Objects;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -25,6 +28,26 @@ public class Vino {
     public void compararEtiqueta() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vino vino = (Vino) o;
+        return añada == vino.añada &&
+                Double.compare(vino.precioARS, precioARS) == 0 &&
+                Objects.equals(bodega, vino.bodega) &&
+                Objects.equals(imagenEtiqueta, vino.imagenEtiqueta) &&
+                Objects.equals(nombre, vino.nombre) &&
+                Objects.equals(notaDeCataBodega, vino.notaDeCataBodega) &&
+                Objects.equals(varietal, vino.varietal) &&
+                Objects.equals(maridaje, vino.maridaje);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(añada, bodega, imagenEtiqueta, nombre, notaDeCataBodega, precioARS, varietal, maridaje);
+    }
+
     public Boolean esDeBodega(Bodega bodegaValidar) {
         if (bodegaValidar.equals(this.bodega)) {
             return true;
@@ -32,7 +55,7 @@ public class Vino {
         return false;
     }
 
-    public Boolean sosEsteVino(Vino vino) {
+    public boolean sosEsteVino(Vino vino) {
         if (vino == null) {
             return false;
         }
@@ -40,10 +63,16 @@ public class Vino {
                 this.bodega.equals(vino.bodega) &&
                 this.nombre.equals(vino.nombre) &&
                 this.varietal.equals(vino.varietal) &&
-                this.maridaje.equals(vino.maridaje) &&
-                Double.compare(this.precioARS, vino.precioARS) == 0 &&
-                this.imagenEtiqueta.equals(vino.imagenEtiqueta) &&
-                this.notaDeCataBodega.equals(vino.notaDeCataBodega);
+                this.maridaje.equals(vino.maridaje);
+    }
+
+    public Boolean sosVinoActualizable(List<Vino> vinosDelSistema){
+        for(Vino vino : vinosDelSistema){
+            if(this.equals(vino)){
+                System.out.println("El vino es actualizable" + vino.getNombre());
+                return true;}
+        }
+        return false;
     }
 
 

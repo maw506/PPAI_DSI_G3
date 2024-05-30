@@ -49,7 +49,7 @@ public class GestorActualizaciones {
     public void buscarBodegasConActualizaciones(ArrayList<Bodega> bodegas, LocalDate fechaActual){ // Esto no sería mejor como guardar bodegas con actualizaciones?
         //busca entre las bodegas existentes en el sistema
         ArrayList<String> buscadas = new ArrayList<>();
-        for(Bodega b: bodegas){     //podria hacerse con while pero es mas sencillo un foreach
+        for(Bodega b: bodegas){
             if(b.hayActualizaciones(fechaActual)){
                 buscadas.add(b.getNombre());
                 setBodegas(buscadas);
@@ -60,16 +60,6 @@ public class GestorActualizaciones {
     public void solicitarSeleccionBodegas(PantallaAdminActualizaciones pantalla, List<Bodega> bodegasDelSist){
         pantalla.solicitarSeleccionBodegas();
         tomarSeleccionBodega(pantalla.getBodegaSeleccionada(), bodegasDelSist);
-    }
-
-    //metodo de soporte?
-    public Bodega buscarBodegaSeleccionada(List<Bodega> bodegasDelSist, String nombre){
-        for(Bodega bodega: bodegasDelSist){
-            if(bodega.getNombre().equals(nombre)){
-                return bodega;
-            }
-        }
-        return null;
     }
 
     public void tomarSeleccionBodega(String nombreBodega, List<Bodega> bodegasDelSist){ // nombreBodega es ingresado por el usuario para buscar entre las Bodegas existentes
@@ -91,21 +81,16 @@ public class GestorActualizaciones {
 
     public void determinarVinosActualizar(){
         List<Vino> vinosAux =new ArrayList<>(0);
-        for(Vino vino: this.vinosImportados){
+        for(Vino vino: vinosImportados){
             if(bodegaSeleccionada.tenesEsteVino(vino)) vinosAux.add(vino);
         }
         setVinosActualizables(vinosAux);
     }
 
-    public void actualizarDatosDeVinos(List<Vino> vinosSistema) {
-        for (int i = 0; i < vinosSistema.size(); i++) {
-            Vino vinoActual = vinosSistema.get(i);              // Aqui se asume que la posicion del vinoActual se encuentra en la misma posicion que el vinoActualizable, se recomienda que se busque el vino en el sistema (por nombre?)
-            Vino vinoActualizable = vinosActualizables.get(i);
+    public String actualizarDatosDeVino(List<Vino> vinosSistema) {
+        String mensaje = bodegaSeleccionada.actualizarDatosDeVino(vinosSistema, vinosActualizables);
+        return mensaje;
 
-            vinoActual.setPrecioARS(vinoActualizable.getPrecioARS());
-            vinoActual.setImagenEtiqueta(vinoActualizable.getImagenEtiqueta());
-            vinoActual.setNotaDeCataBodega(vinoActualizable.getNotaDeCataBodega());
-        }
     }
 
     // public void actualizarDatosDeVinos(){
@@ -146,6 +131,6 @@ public class GestorActualizaciones {
     }
 
     public void finDelCU(){
-        
+        System.exit(0);
     }
 }
