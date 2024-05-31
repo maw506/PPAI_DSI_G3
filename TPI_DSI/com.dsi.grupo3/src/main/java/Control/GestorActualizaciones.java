@@ -1,6 +1,8 @@
 package Control;
 
 import Boundary.InterfazSistemaDeBodegas;
+import Boundary.InterfazDetActualizaciones;
+import Boundary.InterfazActualizarBodegas;
 import Boundary.PantallaAdminActualizaciones;
 import Entidades.*;
 import lombok.AllArgsConstructor;
@@ -10,17 +12,23 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class GestorActualizaciones {
-
-    private List<String> bodegas; //solo guardo el nombre de las bodegas
+    String bodegasJson = "src/main/java/util/bodegas.json";
+    Gson gson = new Gson();
+    List<Bodega> bodegas = Arrays.asList(gson.fromJson(bodegasJson, Bodega.class));
 
     private Bodega bodegaSeleccionada;
 
+    private List<Bodega> bodegasSeleccionadas;
+    
     private Vino vino;
 
     private List<Vino> vinosImportados;
@@ -34,6 +42,22 @@ public class GestorActualizaciones {
     private TipoUva tipoUva;
 
     private Maridaje maridaje;
+
+    public void importarActVino() {
+        // Crea una lista de las bodegas que tienen actualizaciones
+        LocalDate fechaActual = LocalDate.now();
+        ArrayList<String> bodegasConAct = new ArrayList<>();
+        for(Bodega b: bodegas){
+            if(b.hayActualizaciones(fechaActual)){
+                bodegasConAct.add(b.getNombre());
+            }
+        }
+        if (!bodegasConAct.isEmpty()) {
+            new InterfazActualizarBodegas(this, bodegasConAct);
+        } else {
+            System.out.println("No hay actualizaciones disponibles en ninguna bodega.");
+        }
+    }
 
 
     public boolean opcionImportarActDeVinoDeBodega(ArrayList<Bodega> bodega, LocalDate fechaActual){
@@ -52,7 +76,7 @@ public class GestorActualizaciones {
         for(Bodega b: bodegas){
             if(b.hayActualizaciones(fechaActual)){
                 buscadas.add(b.getNombre());
-                setBodegas(buscadas);
+                // setBodegas(buscadas);
             }
         }
     }
@@ -72,15 +96,39 @@ public class GestorActualizaciones {
         buscarActualizaciones();
     }
 
+    public void tomarSeleccionBodegas(List<String> nombresBodegas){
+        // v2 - InterfazActualizarBodegas envía un listado con las bodegas a actualizar al gestor
+        // gestor recorre el listado y para cada bodega compara contra las existentes en el sistema
+        // si la bodega existe en el sistema, el gestor busca la informacion de los vinos y los manda a InterfazDetActualizaciones
+        List<Vino> vinosAux = new ArrayList<>(0);
+        for(String nombreBodega: nombresBodegas){
+            for(Bodega b: bodegas){
+                if(b.getNombre().equals(nombreBodega)){
+                    vinosAux = InterfazSistemaDeBodegas.buscarActualizaciones(b);
+                    new InterfazDetActualizaciones(vinosAux);
+                }
+            }
+        }
+        
+    }
+
+    public void confirmarActualizacion(){
+        // TODO - finalizar con la creación/modicicacion de los vinos
+    }
+
+    public void cancelarActualizacion(){
+        // El cancelar actualizacion no hace nada, simplemente retorna para que continue con la siguiente bodega de la lsita de bodegas seleccionadas
+        return;
+    }
+
     public void buscarActualizaciones(){
         List<Vino> vinosAux;
         vinosAux = InterfazSistemaDeBodegas.buscarActualizaciones(this.bodegaSeleccionada); //el segundo es el metodo de interfaz sist de bodegas
         setVinosImportados(vinosAux);
     }
 
-
     public void determinarVinosActualizar(){
-        List<Vino> vinosAux =new ArrayList<>(0);
+        List<Vino> vinosAux = new ArrayList<>(0);
         for(Vino vino: vinosImportados){
             if(bodegaSeleccionada.tenesEsteVino(vino)) vinosAux.add(vino);
         }

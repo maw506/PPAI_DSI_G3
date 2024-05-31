@@ -1,0 +1,34 @@
+[
+    {
+        "id": 123456,
+        "descripcionCorta": "Una bodega con una gran selección de vinos internacionales.",
+        "descripcionLarga": "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
+        "nombre": "Bodega Internacional",
+        "rating": 2,
+        "fecha": "2024-03-01"
+    },
+    {
+        "id": 654321,
+        "descripcionCorta": "Bodega local famosa por su vino tinto artesanal.",
+        "descripcionLarga": "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
+        "nombre": "Bodega Artesanal",
+        "rating": 3,
+        "fecha": "2024-05-03"
+    },
+    {
+        "id": 123456,
+        "descripcionCorta": "Bodega local famosa por su vino tinto artesanal.",
+        "descripcionLarga": "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
+        "nombre": "Bodega Artesanal",
+        "rating": 2,
+        "fecha": "2024-05-03"
+    },
+    {
+        "id": 123456,
+        "descripcionCorta": "Bodega local famosa por su vino tinto artesanal.",
+        "descripcionLarga": "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
+        "nombre": "Bodega Artesanal",
+        "rating": 5,
+        "fecha": "2024-05-03"
+    }
+]

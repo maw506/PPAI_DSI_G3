@@ -1,0 +1,29 @@
+[
+    {
+        "anio": 2018,
+        "bodega": {
+            "id": 123456,
+            "descripcionCorta": "Una bodega con una gran selección de vinos internacionales.",
+            "descripcionLarga": "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
+            "nombre": "Bodega Internacional",
+            "rating": 2,
+            "fecha": "2024-03-01"
+        },
+        "imagenUrl": "https://example.com/images/vino1.jpg",
+        "nombre": "Gran Reserva",
+        "notaDeCata": "nota de cata",
+        "gradoAlcohol": 12.5,
+        "varietal": {
+            "descripcion": "Varietal único con sabor distintivo.",
+            "porcentaje": 75.5,
+            "tipoUva": {
+                "descripcion": "Descripción del tipo de uva",
+                "nombre": "Tipo Uva 1"
+            }
+        },
+        "maridaje": {
+            "descripcion": "Descripción del maridaje",
+            "nombre": "Nombre del maridaje"
+        }
+    }
+]
