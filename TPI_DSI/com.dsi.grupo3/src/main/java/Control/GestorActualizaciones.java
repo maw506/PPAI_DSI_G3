@@ -1,6 +1,5 @@
 package Control;
 
-import Boundary.InterfazSistemaDeBodegas;
 import Boundary.InterfazActVino;
 import Entidades.*;
 import lombok.AllArgsConstructor;
@@ -81,12 +80,10 @@ public class GestorActualizaciones {
         // v2 - InterfazActualizarBodegas envía un listado con las bodegas a actualizar al gestor
         // gestor recorre el listado y para cada bodega compara contra las existentes en el sistema
         // si la bodega existe en el sistema, el gestor busca la informacion de los vinos y los manda a InterfazDetActualizaciones
-        List<Vino> vinosAux = new ArrayList<>(0);
         for(String nombreBodega: nombresBodegas){
             for(Bodega b: bodegas){
                 if(b.getNombre().equals(nombreBodega)){
-                    vinosAux = InterfazSistemaDeBodegas.buscarActualizaciones(b);
-                    interfaz.mostrarActualizaciones(vinosAux);
+                    buscarActualizaciones(nombreBodega);
                 }
             }
         }
