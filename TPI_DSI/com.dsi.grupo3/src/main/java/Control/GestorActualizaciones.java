@@ -86,7 +86,7 @@ public class GestorActualizaciones {
             for(Bodega b: bodegas){
                 if(b.getNombre().equals(nombreBodega)){
                     vinosAux = InterfazSistemaDeBodegas.buscarActualizaciones(b);
-                    interfaz.InterfazMostrarActualizaciones(vinosAux);
+                    interfaz.mostrarActualizaciones(vinosAux);
                 }
             }
         }
@@ -103,13 +103,13 @@ public class GestorActualizaciones {
     }
 
     public void buscarActualizaciones(String nombreBodega){
-        List<Vino> vinosAux;
+        List<Vino> vinosAux = new ArrayList<>(0);
         for(Vino v: vinos){
             if (v.bodega.equals(nombreBodega)){
                 vinosAux.add(v);
             }
         }
-        interfaz.InterfazMostrarActualizaciones(vinosAux);
+        interfaz.mostrarActualizaciones(vinosAux);
     }
 
     // public void determinarVinosActualizar(){

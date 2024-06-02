@@ -56,7 +56,7 @@ public class InterfazActVino extends JFrame {
         setVisible(true);
     }
 
-    public void InterfazMostrarActualizaciones(List<Vino> vinosAux) {
+    public void mostrarActualizaciones(List<Vino> vinosAux) {
         panel.removeAll();
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
@@ -67,7 +67,7 @@ public class InterfazActVino extends JFrame {
         }
 
         // Panel de botones
-        JButton btnConfirmar = new JButton("Confirmar");
+        JButton btnConfirmar = new JButton("Confirmar Actualizacion");
         JButton btnCancelar = new JButton("Cancelar");
         btnConfirmar.addActionListener(e -> gestor.confirmarActualizacion());
         btnCancelar.addActionListener(e -> gestor.cancelarActualizacion());
