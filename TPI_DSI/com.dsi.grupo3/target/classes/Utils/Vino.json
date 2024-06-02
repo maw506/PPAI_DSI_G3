@@ -1,29 +1,22 @@
 [
     {
         "anio": 2018,
-        "bodega": {
-            "id": 123456,
-            "descripcionCorta": "Una bodega con una gran selección de vinos internacionales.",
-            "descripcionLarga": "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
-            "nombre": "Bodega Internacional",
-            "rating": 2,
-            "fecha": "2024-03-01"
-        },
+        "bodega": "Bodega Internacional",
         "imagenUrl": "https://example.com/images/vino1.jpg",
         "nombre": "Gran Reserva",
         "notaDeCata": "nota de cata",
         "gradoAlcohol": 12.5,
-        "varietal": {
-            "descripcion": "Varietal único con sabor distintivo.",
-            "porcentaje": 75.5,
-            "tipoUva": {
-                "descripcion": "Descripción del tipo de uva",
-                "nombre": "Tipo Uva 1"
-            }
-        },
-        "maridaje": {
-            "descripcion": "Descripción del maridaje",
-            "nombre": "Nombre del maridaje"
-        }
+        "varietal": 1,
+        "maridaje": 1
+    },
+    {
+        "anio": 2017,
+        "bodega": "Catena Zapata",
+        "imagenUrl": "https://example.com/images/vino2.jpg",
+        "nombre": "Saint Felicien",
+        "notaDeCata": "Saint Felicien Malbec es un vino elegante y complejo, de color violeta oscuro y profundo, típico del Malbec argentino. En nariz es intenso y concentrado; presenta aromas de moras maduras con ligeras notas de vainilla, tabaco y licor. En boca, de impacto dulce y gran complejidad, es untuoso, con taninos suaves y redondos característicos del viñedo “Angélica”, en Lunlunta.",
+        "gradoAlcohol": 13.8,
+        "varietal": 1,
+        "maridaje": 1
     }
 ]

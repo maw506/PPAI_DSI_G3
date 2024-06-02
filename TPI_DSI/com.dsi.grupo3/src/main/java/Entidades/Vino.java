@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Vino {
 
     private int añada;
-    private Bodega bodega;
+    public String bodega;
     private String imagenEtiqueta;
     private String nombre;
     private String notaDeCataBodega;
