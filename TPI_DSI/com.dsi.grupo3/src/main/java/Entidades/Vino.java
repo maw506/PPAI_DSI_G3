@@ -1,5 +1,6 @@
 package Entidades;
 
+import DTOs.VinoDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,24 +56,23 @@ public class Vino {
         return false;
     }
 
-    public boolean sosEsteVino(Vino vino) {
-        if (vino == null) {
+    public boolean sosEsteVino(VinoDto vinoDto) {
+        if (vinoDto == null) {
             return false;
         }
-        return this.añada == vino.añada &&
-                this.bodega.equals(vino.bodega) &&
-                this.nombre.equals(vino.nombre) &&
-                this.varietal.equals(vino.varietal) &&
-                this.maridaje.equals(vino.maridaje);
+        return this.añada == vinoDto.getAñada() &&
+                this.bodega.getNombre().equals(vinoDto.getBodega());
     }
 
-    public Boolean sosVinoActualizable(List<Vino> vinosDelSistema){
-        for(Vino vino : vinosDelSistema){
-            if(this.equals(vino)){
-                System.out.println("El vino es actualizable" + vino.getNombre());
-                return true;}
+    public int sosVinoActualizable(List<VinoDto> vinosActualizables) {
+        for (int i = 0; i < vinosActualizables.size(); i++) {
+            VinoDto vinoActualizable = vinosActualizables.get(i);
+            if (vinoActualizable.getAñada() == this.añada &&
+                    vinoActualizable.getBodega().equals(this.bodega.getNombre())) {
+                return i;
+            }
         }
-        return false;
+        return -1;
     }
 
 

@@ -1,5 +1,6 @@
 package Boundary;
 
+import DTOs.VinoDto;
 import Entidades.Bodega;
 import Entidades.Vino;
 import Soporte.LocalDateAdapter;
@@ -17,14 +18,15 @@ import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.time.LocalDate;
 
 public class InterfazSistemaDeBodegas {
 
-    private List<Vino> vinosActualizaciones;
+    private List<VinoDto> vinosActualizaciones;
 
     // Esto debe devolver Vinos y no Bodegas
-    public static List<Vino> buscarActualizaciones(Bodega bodega) {
+    public static List<VinoDto> buscarActualizaciones(Bodega bodega) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
@@ -33,12 +35,13 @@ public class InterfazSistemaDeBodegas {
              InputStreamReader fileReader = new InputStreamReader(inputStream)) {
 
             // Leer el array de vinos directamente desde el JSON
-            Type listType = new TypeToken<List<Vino>>() {}.getType();
-            List<Vino> vinos = gson.fromJson(fileReader, listType);
+            Type listType = new TypeToken<List<VinoDto>>() {
+            }.getType();
+            List<VinoDto> vinos = gson.fromJson(fileReader, listType);
 
             // Filtrar los vinos por el nombre de la bodega
             return vinos.stream()
-                    .filter(vino -> vino.getBodega().getNombre().equals(bodega.getNombre())) // Quitar porque un vino tiene solo una bodega
+                    .filter(vino -> vino.getBodega().equals(bodega.getNombre())) // Quitar porque un vino tiene solo una bodega
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
