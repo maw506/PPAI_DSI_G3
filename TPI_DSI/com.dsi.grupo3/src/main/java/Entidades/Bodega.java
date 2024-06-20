@@ -48,8 +48,6 @@ public class Bodega {
                 vino.setPrecioARS(vinosActualizables.get(index).getPrecioARS());
                 vino.setImagenEtiqueta(vinosActualizables.get(index).getImagenEtiqueta());
                 vino.setNotaDeCataBodega(vinosActualizables.get(index).getNotaDeCataBodega());
-            } else {
-                System.out.println("NO ES VINO ACTUALIZABLE" + vino.getNombre());
             }
         }
     }

@@ -15,30 +15,35 @@ public class App {
 
         TipoUva tipoUva = new TipoUva("Descripción del tipo de uva.",
                 "Tipo Uva 1");
+        TipoUva tipoUva2 = new TipoUva("Descripción del tipo de uva.",
+                "Tipo Uva 2");
+        TipoUva tipoUva3 = new TipoUva("Descripción del tipo de uva.",
+                "Tipo Uva 3");
+
 
         Bodega bodega1 = new Bodega(123456, "Una bodega con una gran selección de vinos internacionales.",
                 "Fundada en 1990, esta bodega ha sido un punto de referencia para los amantes del vino.",
                 "Bodega Internacional",
                 2,
-                LocalDate.of(2024,3,1));
+                LocalDate.of(2024, 3, 1));
         Bodega bodega2 = new Bodega(654321,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
                 "Bodega Artesanal",
                 3,
-                LocalDate.of(2024,5,3));
+                LocalDate.of(2024, 5, 3));
         Bodega bodega3 = new Bodega(123456,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
                 "Bodega Artesanal",
                 2,
-                LocalDate.of(2024,5,3));
+                LocalDate.of(2024, 5, 3));
         Bodega bodega4 = new Bodega(123456,
                 "Bodega local famosa por su vino tinto artesanal.",
                 "Desde 1985, esta bodega ha producido vinos de alta calidad usando técnicas tradicionales.",
                 "Bodega Artesanal",
                 5,
-                LocalDate.of(2024,5,3));
+                LocalDate.of(2024, 5, 3));
         ArrayList<Bodega> bodegasSist = new ArrayList<>();
         bodegasSist.add(bodega1);
         bodegasSist.add(bodega2);
@@ -46,7 +51,9 @@ public class App {
         Varietal varietal = new Varietal("Varietal único con sabor distintivo.", 75.5f, tipoUva);
         Maridaje maridaje = new Maridaje("Perfecto con carnes rojas y quesos fuertes.", "Maridaje 1");
 
-        Vino vino1 = new Vino(2018, bodega1, "https://example.com/images/vino1.jpg", "Gran Reserva", "nota de cata", 800, varietal,maridaje);
+        ArrayList<Varietal> varietalSist;
+
+        Vino vino1 = new Vino(2018, bodega1, "https://example.com/images/vino1.jpg", "Gran Reserva", "nota de cata", 800, varietal, maridaje);
         Vino vino2 = new Vino(2, bodega2, "favicon.ico", "Vino 2", "nota de cata", 12.5, varietal, maridaje);
         Vino vino3 = new Vino(3, bodega3, "favicon.ico", "Vino 3", "nota de cata", 12.5, varietal, maridaje);
 
@@ -72,9 +79,10 @@ public class App {
         //falta el metodo opcionImportarVinosDeBodega de la clase pantalla
         pantallaAdminActualizaciones.habilitarPantalla();
 
-        Boolean flag = control.opcionImportarActDeVinoDeBodega(bodegasSist,LocalDate.now()); //
-        if(flag){
+        Boolean flag = control.opcionImportarActDeVinoDeBodega(bodegasSist, LocalDate.now()); //
+        if (flag) {
             System.out.println("Hay actualizaciones!!!!");
+            System.out.println("TAMAÑO INICIAL DEL ARREGLO:" + vinosDelSist.size());
             System.out.println("\nCargando las bodegas ccon actualizaciones...");
 
             pantallaAdminActualizaciones.mostrarBodega(control.getBodegas());
@@ -92,18 +100,22 @@ public class App {
             //y si el metodo funcionó
             System.out.println("\nVinos Actualizables");
             System.out.println(control.getVinosActualizables().stream().toList());
+            System.out.println(":::::::::::::::::::::::::::::");
+            System.out.println("\nVinos creables");
+            System.out.println(control.getVinosCreables());
 
             System.out.println("::::::::::::::::::::::::::::::::");
             control.actualizarDatosDeVino(vinosDelSist);
-            System.out.println("NOVEDADES\n" + vinosDelSist.stream().toList());
+            System.out.println("NOVEDADES\n");
+            vinosDelSist.stream().forEach(vino -> System.out.println(vino.toString()));
 
             //envia notificacion a enofilos
             //control.buscarSeguidores(enofilosDelSistema, bodega1); // falta probarlo
 
+            System.out.println("TAMAÑO FINAL DEL ARREGLO: " + vinosDelSist.size());
             //Finalizar el programa
             pantallaAdminActualizaciones.mostrarOpcionFinalizar(control);
-        }
-        else{ //esto podria ser el flujo alternativo
+        } else { //esto podria ser el flujo alternativo
             System.out.println("No hay actualizaciones");
         }
 

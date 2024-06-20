@@ -30,9 +30,9 @@ public class Varietal {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Varietal{");
-        sb.append("\ndescripcion='").append(descripcion).append('\'');
-        sb.append("\nporcentajeComposicion=").append(porcentajeComposicion);
-        sb.append("\n\ntipoDeUva=").append(tipoDeUva);
+        sb.append("descripcion='").append(descripcion).append('\'');
+        sb.append("porcentajeComposicion=").append(porcentajeComposicion);
+        sb.append("tipoDeUva=").append(tipoDeUva);
         sb.append('}');
         return sb.toString();
     }

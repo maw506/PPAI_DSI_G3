@@ -28,6 +28,8 @@ public class GestorActualizaciones {
 
     private List<VinoDto> vinosActualizables;
 
+    private List<VinoDto> vinosCreables;
+
     private List<String> usuarios;
 
     private Varietal varietal;
@@ -79,21 +81,24 @@ public class GestorActualizaciones {
         setVinosImportados(vinosAux);
     }
 
-
     public void determinarVinosActualizar(List<Vino> vinosSistema) {
-        List<VinoDto> vinosAux = new ArrayList<>();
+        List<VinoDto> auxActualizables = new ArrayList<>();
+        List<VinoDto> auxNoActualizables = new ArrayList<>();
         for (VinoDto vino : vinosImportados) {
-            if (bodegaSeleccionada.tenesEsteVino(vino, vinosSistema)) vinosAux.add(vino);
+            if (bodegaSeleccionada.tenesEsteVino(vino, vinosSistema)) auxActualizables.add(vino);
+            else auxNoActualizables.add(vino);
         }
-        setVinosActualizables(vinosAux);
+        setVinosActualizables(auxActualizables);
+        setVinosCreables(auxNoActualizables);
     }
 
     public void actualizarDatosDeVino(List<Vino> vinosSistema) {
         bodegaSeleccionada.actualizarDatosDeVino(vinosSistema, vinosActualizables);
-    }
 
-    public void buscarVarietal(ArrayList<Vino> vinos) {
-
+        for (VinoDto vino : vinosCreables) {
+            Vino nuevo = crearVino(vino);
+            vinosSistema.add(nuevo);
+        }
     }
 
     public void buscarTipoUva() {
@@ -101,17 +106,15 @@ public class GestorActualizaciones {
     }
 
     public void buscarMaridaje(String nombre, List<Maridaje> maridajeSistema) {
-            setMaridaje(maridajeSistema.stream()
+        setMaridaje(maridajeSistema.stream()
                 .filter(maridaje -> maridaje.getNombre().equals(nombre))
                 .findFirst()
                 .orElse(null));
-
     }
 
+    public Vino crearVino(VinoDto vinoDto) {
 
-    public Vino crearVino() {
-
-        Vino nuevo = new Vino();
+        Vino nuevo = new Vino(vinoDto.getAñada(), bodegaSeleccionada, vinoDto.getImagenEtiqueta(), vinoDto.getNombre(), vinoDto.getNotaDeCataBodega(), vinoDto.getPrecioARS(), varietal, maridaje);
 
         return nuevo;
     }
@@ -128,3 +131,4 @@ public class GestorActualizaciones {
         System.exit(0);
     }
 }
+
